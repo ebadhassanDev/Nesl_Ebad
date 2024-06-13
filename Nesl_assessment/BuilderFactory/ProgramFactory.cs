@@ -26,7 +26,7 @@ namespace Nesl_assessment.BuilderFactory
             var serviceProvider = services.BuildServiceProvider();
             return new Program
              (
-                 cus: serviceProvider.GetService<ICustomerRepository>(),
+                cus: serviceProvider.GetService<ICustomerRepository>(),
                 mail: serviceProvider.GetService<IMailService>(),
                 log: serviceProvider.GetService<ILogService>()
              );

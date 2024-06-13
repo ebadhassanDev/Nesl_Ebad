@@ -67,7 +67,7 @@ namespace Nesl_assessment.Repository
                     {
                         if (DataLayer.GetOrdersList().Any(s => s.CustomerEmail == customer.Email))
                             continue;
-                        await this.mailService.SendEmail(customerEmail: customer.Email);
+                        await this.mailService.SendEmail(customerEmail: customer.Email, voucherCode);
                     }
 
                     skip += batchSize;

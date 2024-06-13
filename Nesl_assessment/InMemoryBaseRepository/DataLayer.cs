@@ -9,6 +9,9 @@ namespace Nesl_assessment.InMemoryBaseRepository
 {
     public class DataLayer
     {
+        /// <summary>
+		/// Mockup method for all customers
+		/// </summary>
         public static IEnumerable<CustomerDocument> GetCustomersList(Func<CustomerDocument, bool> predicate = null)
         {
             var customerDocuments = new List<CustomerDocument>()
@@ -26,6 +29,9 @@ namespace Nesl_assessment.InMemoryBaseRepository
             }
             return customerDocuments;
         }
+        /// <summary>
+        /// Mockup method for listing all orders
+        /// </summary>
         public static IEnumerable<OrderDocument> GetOrdersList(Func<OrderDocument, bool> predicate = null)
         {
             var ordersDocuments = new List<OrderDocument>()

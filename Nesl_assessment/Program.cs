@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace Nesl_assessment
 {
+    /// <summary>
+    /// Main class for application
+    /// </summary>
     public class Program
     {
         private readonly ICustomerRepository _customerRepository;
@@ -22,6 +25,11 @@ namespace Nesl_assessment
             this._mailService = mail;
             this._logService = log;
         }
+
+        /// <summary>
+        /// This application is run everyday
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.Title = "Send Customer Email Utility";
@@ -37,10 +45,12 @@ namespace Nesl_assessment
         private async Task RunProgram()
         {
             bool success = await this._customerRepository.SendEmailToNewCustomers().ConfigureAwait(false);
+            if (success) this._logService.Information($"Email successfully send to New Customers");
 
             if (!success) this._logService.Error(message: "Something went wrong", method: nameof(_customerRepository.SendEmailToNewCustomers), mailSend: success);
 
             success = await this._customerRepository.SendEmailWithVoucherCode("EOComeBackToUs").ConfigureAwait(false);
+            if (success) this._logService.Information($"Emails successfully send to Voucher code customers");
 
             if (!success) this._logService.Error(message: "Something went wrong", method: nameof(_customerRepository.SendEmailWithVoucherCode), mailSend: success);
 
